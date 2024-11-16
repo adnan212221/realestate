@@ -6,8 +6,11 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 import '../style/header.scss'
+import {useSelector} from 'react-redux'
 
 const Header = () => {
+  const {user} = useSelector(state =>state.user)
+  
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
@@ -36,7 +39,7 @@ const Header = () => {
               <Link to="/about" className="nav-link">About</Link>
             </Nav.Item>
             <Nav.Item>
-              <Link to="/signin" className="nav-link">Sign In</Link>
+              <Link to="/profile" className="nav-link">{user ? (<img src={user.avatar || user.rest.avatar} width='40%' alt='profile'/>):'sign in'}</Link>
             </Nav.Item>
           </Nav>
           
